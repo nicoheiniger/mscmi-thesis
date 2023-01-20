@@ -49,6 +49,8 @@ export const receiveData = async (transactionHash:string, researchPrivKey:string
               fs.writeFile("../receivedUtils/decrypted_file.hl7", decryptedFile, () => {     
 
                 console.log("\n File successfully downloaded!");
+                const time4 = new Date().getTime();
+                console.log(time4);
 
               })
             })               
