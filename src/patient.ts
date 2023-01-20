@@ -5,6 +5,9 @@ import crypto from "crypto";
 import { sendData } from './sendData';
 import { encrypt } from './encryptFile'
 
+const time1 = new Date().getTime();
+console.log(time1);
+
 declare const history: promptSync.History;
 
 let prompt: promptSync.Prompt;
@@ -15,6 +18,8 @@ var encryptionKey = crypto.randomBytes(20).toString('hex');
 encryptionKey = crypto.createHash('sha256').update(String(encryptionKey)).digest('base64').substr(0, 32);
 
 function selectRecipient() {
+    const time2 = new Date().getTime();
+    console.log(time2);
     console.log("\n Hi 👋! Welcome to the eHealth Data Sharing Platform!", '\n');
     console.log("Please enter who you want to share your data with: \n");
     console.log("--- [a] to share your data with academic research");
@@ -43,6 +48,8 @@ function selectRecipient() {
 
 function authenticate() {
     let privateKey:string = prompt('Enter your private key: ');
+    const time3 = new Date().getTime();
+    console.log(time3);
     return privateKey;
     
 }
@@ -79,9 +86,12 @@ async function uploadToIpfs(){
 
     const encryptedFile = encrypt(file, Buffer.from(encryptionKey));
     fs.writeFile('../sourceUtils/encrypted_file.hl7', encryptedFile,  () => { 
+        
+       uploadToIpfs().then((hash) => {sendData(selectRecipient() as string, authenticate() as string, hash as string, encryptionKey).then();});
 
-    uploadToIpfs().then((hash) => {sendData(selectRecipient() as string, authenticate() as string, hash as string, encryptionKey).then();});
+    
 
 })
     })
+
 

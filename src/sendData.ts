@@ -47,7 +47,8 @@ import {
       networkGenerationHash,
     );
     console.log("\n Your data was sent successfully with the transaction hash:",signedTransaction.hash);
-
+    const time4 = new Date().getTime();
+    console.log(time4);
     const transactionRepository = repositoryFactory.createTransactionRepository();
   
     const response = await transactionRepository
