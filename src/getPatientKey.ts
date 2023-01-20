@@ -8,3 +8,4 @@ export async function fetchPatientkey(hash:string) {
     const response = await fetch(url);
     return response.json();
   }
+

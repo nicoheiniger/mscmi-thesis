@@ -42,17 +42,21 @@ export const receiveData = async (transactionHash:string, researchPrivKey:string
             const ipfsHash = decryptedMessage.substring(0,decryptedMessage.search("/ehr")+4);
             const decryptionKey = decryptedMessage.substring(decryptedMessage.search("/ehr")+4)
 
-          fetchIPFSDoc(ipfsHash).then((text) => {
+          fetchIPFSDoc(ipfsHash).then(() => {
 
-            const decryptedFile = decrypt(text, decryptionKey);
+            const encryptedFile = fs.readFile('../receivedUtils/downloaded_encrypted_file.hl7', (err, file) => {
+              const decryptedFile = decrypt(file, decryptionKey);
+              fs.writeFile("../receivedUtils/decrypted_file.hl7", decryptedFile, () => {     
 
-            fs.writeFile("../receivedUtils/decrypted_lab.hl7", decryptedFile, () => {     
+                console.log("\n File successfully downloaded!");
 
-            })
+              })
+            })               
 
-            console.log("\n File successfully downloaded!");
+            
           }); 
           }
       )
 
 }
+

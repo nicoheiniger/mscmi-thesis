@@ -24,13 +24,13 @@ function selectRecipient() {
     if (recipient === "a") 
     {
         console.log('\n You selected: academic research');
-        const researchPublicKey = "4F1E7AFB05516A2AD652460816690BEC62E1DA5E4B82DF0580C18A5F7FFF8B48";
+        const researchPublicKey = "5730A5D186E1315FD09B6CFB6A0D344CA547966D551E495F817C034B28B87FC4";
         return researchPublicKey;
     } 
     else if (recipient === "c")
     {
         console.log("\n You selected: commercial research"); 
-        const researchPublicKey = "413AFB9351C5702137D22D3DDBC8660713A608EE01EF68D6C296D5FA254E515D";
+        const researchPublicKey = "57668E2C5D3EB72F9A3AAE08F874AED3F242444065D155B0387EF753780835AB";
         return researchPublicKey;
     }
     else
@@ -49,7 +49,7 @@ function authenticate() {
 
 
 
-async function uploadToIpfs(file){
+async function uploadToIpfs(){
 
         await Moralis.start({
         apiKey: "UHvLWtl7xtgrVLdG8e8mTfbcmCJta8pwFS0PYCmTfsgSz4KA5cnydV1goIb5nvub"
@@ -57,7 +57,7 @@ async function uploadToIpfs(file){
     const uploadArray = [
         {
             path: "ehr",
-            content: file
+            content: fs.readFileSync('../sourceUtils/encrypted_file.hl7', {encoding: "base64"})
             
         },
 
@@ -78,7 +78,10 @@ async function uploadToIpfs(file){
     if(err) return console.error(err.message);
 
     const encryptedFile = encrypt(file, Buffer.from(encryptionKey));
+    fs.writeFile('../sourceUtils/encrypted_file.hl7', encryptedFile,  () => { 
 
-    uploadToIpfs(encryptedFile).then((hash) => {sendData(selectRecipient() as string, authenticate() as string, hash as string, encryptionKey).then();});
+    uploadToIpfs().then((hash) => {sendData(selectRecipient() as string, authenticate() as string, hash as string, encryptionKey).then();});
+
+})
     })
 
