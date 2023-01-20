@@ -23,7 +23,5 @@ export async function fetchIPFSDoc(ipfsHash:string) {
 
   });
 
-  return response;
-
-}
+  }
 
