@@ -14,7 +14,17 @@ prompt = promptSync({});
 var encryptionKey = crypto.randomBytes(20).toString('hex');
 encryptionKey = crypto.createHash('sha256').update(String(encryptionKey)).digest('base64').substr(0, 32);
 
+var logoCli = require('cli-logo'),
+    version = " ",
+    description = " ",
+    logoConfig = {
+        "name": "eHealth Platform",
+        "description": description,
+        "version": version
+    };
+
 function selectRecipient() {
+    logoCli.print(logoConfig);
     console.log("\n Hi 👋! Welcome to the eHealth Data Sharing Platform!", '\n');
     console.log("Please enter who you want to share your data with: \n");
     console.log("--- [a] to share your data with academic research");

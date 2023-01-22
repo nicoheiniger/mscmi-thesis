@@ -8,7 +8,17 @@ let prompt: promptSync.Prompt;
 
 prompt = promptSync({});
 
+var logoCli = require('cli-logo'),
+    version = " ",
+    description = " ",
+    logoConfig = {
+        "name": "eHealth Platform",
+        "description": description,
+        "version": version
+    };
+
 function selectTransaction() {
+    logoCli.print(logoConfig);
     console.log("\n Hi 👋! Welcome to the eHealth Data Sharing Platform!", '\n');
     let transactionHash:string = prompt('Please enter the transaction hash to receive your files: ');
     return transactionHash;
