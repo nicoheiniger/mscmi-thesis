@@ -8,7 +8,7 @@ import {
   TransferTransaction,
   TransactionSearchCriteria
 } from '@dhealth/sdk';
-import { fetchIPFSDoc } from "./downloadData"
+import { downloadFile } from "./downloadData";
 import fs from "fs";
 import { decrypt } from './encryptFile';
 
@@ -42,7 +42,9 @@ export const receiveData = async (transactionHash:string, researchPrivKey:string
             const ipfsHash = decryptedMessage.substring(0,decryptedMessage.search("/ehr")+4);
             const decryptionKey = decryptedMessage.substring(decryptedMessage.search("/ehr")+4)
 
-          fetchIPFSDoc(ipfsHash).then(() => {
+
+
+          downloadFile(ipfsHash).then(() => {
 
             const encryptedFile = fs.readFile('../receivedUtils/downloaded_encrypted_file.hl7', (err, file) => {
               const decryptedFile = decrypt(file, decryptionKey);
@@ -51,7 +53,6 @@ export const receiveData = async (transactionHash:string, researchPrivKey:string
                 console.log("\n File successfully downloaded!");
                 const time4 = new Date().getTime();
                 console.log(time4);
-
               })
             })               
 
