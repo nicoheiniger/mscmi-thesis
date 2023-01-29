@@ -9,7 +9,4 @@ documents/**
 .env
 .keys
 test.ts
-receivedUtils/
-sourceUtils/
-package-lock.json
 package-lock.json
