@@ -6,7 +6,8 @@ import {
   RepositoryFactoryHttp,
   TransactionGroup,
   TransferTransaction,
-  TransactionSearchCriteria
+  TransactionSearchCriteria,
+  AggregateTransaction
 } from '@dhealth/sdk';
 import { downloadFile } from "./downloadData"
 import fs from "fs";
@@ -33,8 +34,9 @@ export const receiveData = async (transactionHash: string, researchPrivKey: stri
   const repositoryFactory = new RepositoryFactoryHttp(nodeUrl);
   const transactionHttp = repositoryFactory.createTransactionRepository();
 
-  transactionHttp.getTransaction(transactionHash, TransactionGroup.Confirmed).pipe(map((x) => x as TransferTransaction)).subscribe(
+  transactionHttp.getTransaction(transactionHash, TransactionGroup.Confirmed).pipe(map((x) => x as AggregateTransaction)).subscribe(
     (transaction) => {
+     
       const decryptedMessage = researchAccount.decryptMessage(
         transaction.message,
         patientPublicAccount,
