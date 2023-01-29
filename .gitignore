@@ -10,3 +10,4 @@ documents/**
 .keys
 test.ts
 package-lock.json
+sourceUtils/encrypted_file.hl7
