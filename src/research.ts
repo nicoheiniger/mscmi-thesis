@@ -1,6 +1,7 @@
 import promptSync from 'prompt-sync';
 import { receiveData } from './receiveData';
 import { fetchPatientkey } from './getPatientKey';
+import { cosignTransaction } from './signTransaction';
 
 declare const history: promptSync.History;
 
@@ -30,8 +31,14 @@ function authenticate() {
 }
 
 const transactionHash = selectTransaction();
+const researchPrivateKey = authenticate();
+
+//cosignTransaction(transactionHash,researchPrivateKey).then();
+
 
 fetchPatientkey(transactionHash).then((transaction) => {
     const patientPublicKey = transaction.transaction.signerPublicKey;
-    receiveData(transactionHash,authenticate(),patientPublicKey).then()
+    
+    
+    receiveData(transactionHash,researchPrivateKey,patientPublicKey).then();
 });

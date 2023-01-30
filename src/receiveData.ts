@@ -38,7 +38,7 @@ export const receiveData = async (transactionHash: string, researchPrivKey: stri
     (transaction) => {
      
       const decryptedMessage = researchAccount.decryptMessage(
-        transaction.message,
+        (transaction.innerTransactions[0] as TransferTransaction).message,
         patientPublicAccount,
       ).payload;
       const ipfsHash = decryptedMessage.substring(0, decryptedMessage.search("/ehr") + 4);
@@ -61,4 +61,3 @@ export const receiveData = async (transactionHash: string, researchPrivKey: stri
   )
 
 }
-
