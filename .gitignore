@@ -11,3 +11,5 @@ documents/**
 test.ts
 package-lock.json
 sourceUtils/encrypted_file.hl7
+receivedUtils/decrypted_file.hl7
+receivedUtils/downloaded_encrypted_file.hl7
