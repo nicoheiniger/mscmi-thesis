@@ -20,12 +20,12 @@ var logoCli = require('cli-logo'),
 function selectTransaction() {
     logoCli.print(logoConfig);
     console.log("\n Hi 👋! Welcome to the eHealth Data Sharing Platform!", '\n');
-    let transactionHash:string = prompt('Please enter the transaction hash to receive your files: ');
+    let transactionHash: string = prompt('Please enter the transaction hash to receive your files: ');
     return transactionHash;
 }
 
 function authenticate() {
-    let researchPrivKey:string = prompt('\n Please enter your private key to receive your files: ');
+    let researchPrivKey: string = prompt('\n Please enter your private key to receive your files: ');
     return researchPrivKey;
 }
 
@@ -33,5 +33,5 @@ const transactionHash = selectTransaction();
 
 fetchPatientkey(transactionHash).then((transaction) => {
     const patientPublicKey = transaction.transaction.signerPublicKey;
-    receiveData(transactionHash,authenticate(),patientPublicKey).then()
+    receiveData(transactionHash, authenticate(), patientPublicKey).then()
 });
