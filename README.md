@@ -1,4 +1,4 @@
-# Decentralized eHealth data sharing
+# Patient-Centric eHealth Data Exchange Using Distributed Ledger Technology
 
 MSc in Medical Informatics FHNW <br>
 Master Thesis<br>
