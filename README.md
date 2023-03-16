@@ -4,6 +4,8 @@ MSc in Medical Informatics FHNW <br>
 Master Thesis<br>
 Nico Heiniger<br>
 
+[See Summary](https://github.com/nicoheiniger/mscmi-thesis/blob/main/MSMI_Heiniger_Nico_Poster.pdf)
+
 ## Set-Up
 1. install dependencies with:
 ```
